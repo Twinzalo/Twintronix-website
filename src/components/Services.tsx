@@ -1,22 +1,12 @@
 // Services.tsx
-import {
-  ArrowRight,
-  CheckCircle2,
-  Wind,
-  Wrench,
-  Snowflake,
-  Refrigerator,
-  Zap,
-  Fan,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-
 import { motion, AnimatePresence } from "motion/react";
 
 const servicesList = [
   {
-    icon: Wind,
+    icon: "/images/icons/icon-ac-install.png",
     image: "/src/assets/images/ac_installation_1793104493756.jpg",
     title: "AC Installation",
     desc: "Professional installation of modern, energy-efficient air conditioning systems tailored for your space.",
@@ -30,7 +20,7 @@ const servicesList = [
     ],
   },
   {
-    icon: Wrench,
+    icon: "/images/icons/icon-ac-repair.png",
     image: "/src/assets/images/ac_repair_1793104493945.jpg",
     title: "AC Repairs & Maintenance",
     desc: "Rapid diagnostics and thorough repair to get your cooling systems running perfectly again.",
@@ -44,7 +34,7 @@ const servicesList = [
     ],
   },
   {
-    icon: Snowflake,
+    icon: "/images/icons/icon-coldroom.png",
     image: "/src/assets/images/coldroom_storage_1793104493014.jpg",
     title: "Freezer Rooms & Coldrooms",
     desc: "Commercial refrigeration setups, maintenance, and emergency fixes for cold storage.",
@@ -58,7 +48,7 @@ const servicesList = [
     ],
   },
   {
-    icon: Refrigerator,
+    icon: "/images/icons/icon-fridge.png",
     image: "/src/assets/images/commercial_fridge_1793104494657.jpg",
     title: "Commercial Refrigeration",
     desc: "Ice Machines, Under Bars, Bottle Coolers, Island Freezers & Upright Cabinets.",
@@ -72,7 +62,7 @@ const servicesList = [
     ],
   },
   {
-    icon: Zap,
+    icon: "/images/icons/icon-electrical.png",
     image: "/src/assets/images/hero_banner_1793104493379.jpg",
     title: "Electrical Works",
     desc: "Integrated electrical solutions for HVAC systems to ensure safe and continuous operation.",
@@ -86,7 +76,7 @@ const servicesList = [
     ],
   },
   {
-    icon: Fan,
+    icon: "/images/icons/icon-ventilation.png",
     image: "/src/assets/images/ac_installation_1793104493756.jpg",
     title: "Ventilation Solutions",
     desc: "Expert ventilation solutions to improve indoor air quality and maintain consistent airflow.",
@@ -151,7 +141,7 @@ export default function Services() {
       </div>
 
       <div className="max-w-7xl mx-auto px-8 w-full relative z-2">
-        {/* Heading Section with background image behind text */}
+        {/* Heading Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -193,7 +183,7 @@ export default function Services() {
                   className="bg-white rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-[0_8px_40px_rgb(59,130,246,0.12)] transition-all duration-300 group flex flex-col relative"
                 >
                   <div className="relative mb-14">
-                    {/* Image Container with matching specific rounded borders */}
+                    {/* Image Container */}
                      <div className="h-64 w-full rounded-tl-[40px] rounded-tr-[40px] rounded-br-[60px] rounded-bl-[60px] overflow-hidden relative">
                         <img
                           src={srv.image}
@@ -207,8 +197,13 @@ export default function Services() {
                      
                      {/* Circle icon with white border */}
                      <div className="absolute -bottom-8 left-8 z-20">
-                       <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center border-[6px] border-white shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:bg-cyan-500 text-white">
-                         <srv.icon size={36} className="text-white" />
+                       <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center border-[6px] border-white shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:bg-cyan-500">
+                         {/* REMOVED the brightness-0 invert here */}
+                         <img 
+                           src={srv.icon} 
+                           alt={srv.title} 
+                           className="w-10 h-10 object-contain" 
+                         />
                        </div>
                      </div>
                   </div>
@@ -263,12 +258,14 @@ export default function Services() {
                       className={`w-full flex items-center justify-between p-4 rounded-2xl font-bold transition-all duration-300 ${selectedServiceIdx === i ? "bg-blue-600 text-white shadow-md" : "bg-[#f8faff] text-slate-700 hover:bg-blue-50"}`}
                     >
                       <span className="flex items-center gap-3">
-                        <srv.icon
-                          size={20}
-                          className={`transition-all duration-300 ${
+                        {/* REMOVED the brightness-0 invert here */}
+                        <img
+                          src={srv.icon}
+                          alt={srv.title}
+                          className={`w-5 h-5 object-contain transition-all duration-300 ${
                             selectedServiceIdx === i
-                              ? "text-white"
-                              : "text-blue-600"
+                              ? "opacity-100"
+                              : "opacity-70 group-hover:opacity-100"
                           }`}
                         />
                         {srv.title}
@@ -308,8 +305,13 @@ export default function Services() {
                     <div className="flex items-center gap-6 text-white">
                       <div className="relative flex items-center justify-center">
                          <div className="absolute w-[88px] h-[88px] bg-white/20 rounded-full"></div>
-                         <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg relative z-10 text-white">
-                           <selectedService.icon size={32} className="text-white" />
+                         <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg relative z-10">
+                           {/* REMOVED the brightness-0 invert here */}
+                           <img 
+                             src={selectedService.icon} 
+                             alt={selectedService.title} 
+                             className="w-8 h-8 object-contain" 
+                           />
                          </div>
                       </div>
                       <h2 className="text-3xl md:text-4xl font-black">
@@ -366,22 +368,7 @@ export default function Services() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mt-20 text-center"
-        >
-          <div className="inline-flex flex-wrap justify-center gap-4 bg-white/80 backdrop-blur-sm rounded-full p-1 border border-gray-200 shadow-sm">
-            <div className="flex items-center gap-2 px-6 py-2 text-gray-700">
-              <CheckCircle2 size={20} className="text-cyan-500" />
-              <span className="font-medium">Certified Experts</span>
-            </div>
-            <div className="flex items-center gap-2 px-6 py-2 text-gray-700">
-              <CheckCircle2 size={20} className="text-cyan-500" />
-              <span className="font-medium">24/7 Emergency Service</span>
-            </div>
-            <div className="flex items-center gap-2 px-6 py-2 text-gray-700">
-              <CheckCircle2 size={20} className="text-cyan-500" />
-              <span className="font-medium">Best Price Guarantee</span>
-            </div>
-          </div>
-        </motion.div>
+        ></motion.div>
       </div>
     </section>
   );
