@@ -8,14 +8,20 @@ export default function Hero() {
       id="home"
       className="relative bg-slate-900 min-h-[600px] flex items-center pt-20 pb-32 lg:pt-32 lg:pb-48 overflow-hidden z-0"
     >
-      {/* Background Image / Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/images/hero-bg.jpg"
-          alt="HVAC background"
-          className="w-full h-full object-cover opacity-30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-slate-900 via-slate-900/80 to-transparent"></div>
+      {/* Background Image Container */}
+      <div className="absolute inset-0 z-0 flex justify-end">
+        <div className="w-full lg:w-[65%] h-full relative">
+          <img
+            src="/src/assets/images/hero_banner_1793104493379.jpg"
+            alt="Twintronix cooling technicians"
+            className="w-full h-full object-cover object-[75%_15%]"
+            referrerPolicy="no-referrer"
+          />
+          {/* Blend image into the dark left background on desktop */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900 from-0% via-slate-900/40 via-30% to-transparent hidden lg:block"></div>
+          {/* Full dark overlay on mobile for text readability */}
+          <div className="absolute inset-0 bg-slate-900/80 lg:hidden"></div>
+        </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-8 w-full relative z-10 grid lg:grid-cols-2 gap-12">
@@ -24,7 +30,7 @@ export default function Hero() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="max-w-2xl"
+          className="max-w-2xl lg:col-start-1"
         >
           <div className="flex items-center gap-2 mb-6">
             <div className="w-12 h-[2px] bg-cyan-400"></div>

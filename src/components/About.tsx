@@ -16,16 +16,18 @@ export default function About() {
         >
           <div className="relative rounded-lg overflow-hidden border-8 border-white shadow-xl z-10">
             <img
-              src="/images/about-1.jpg"
+              src="/src/assets/images/ac_repair_1793104493945.jpg"
               alt="Technician working on AC"
               className="w-full object-cover h-[500px]"
+              referrerPolicy="no-referrer"
             />
           </div>
           <div className="absolute -bottom-10 -right-10 w-2/3 border-8 border-white rounded-lg overflow-hidden shadow-xl z-20 hidden md:block">
             <img
-              src="/images/about-2.jpg"
+              src="/src/assets/images/coldroom_storage_1793104493014.jpg"
               alt="Refrigeration details"
               className="w-full object-cover h-[300px]"
+              referrerPolicy="no-referrer"
             />
           </div>
           {/* Experience Badge */}

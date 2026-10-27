@@ -3,20 +3,20 @@ import { motion } from "motion/react";
 
 const benefits = [
   {
-    title: "Expert Technicians",
-    desc: "Our team consists of certified professionals ready to handle any refrigeration challenge.",
+    title: "Lower Energy Bills",
+    desc: "Efficiently running systems consume less power, directly reducing your monthly utility costs and overheads.",
   },
   {
-    title: "Affordable Pricing",
-    desc: "We offer transparent and competitive pricing without compromising on quality.",
+    title: "Extended Equipment Life",
+    desc: "Regular maintenance prevents premature wear and tear, adding years to the lifespan of your expensive assets.",
   },
   {
-    title: "Quality Guarantee",
-    desc: "100% satisfaction guarantee on all our installations and repair services.",
+    title: "Fewer Breakdowns",
+    desc: "Minimize unexpected and costly downtime with preventative care that catches critical issues early.",
   },
   {
-    title: "24/7 Support",
-    desc: "We are available around the clock for emergency breakdowns and services.",
+    title: "Optimal Cooling",
+    desc: "Ensure your commercial perishable goods stay perfectly chilled and your spaces remain comfortable year-round.",
   },
 ];
 
@@ -25,9 +25,10 @@ export default function Benefits() {
     <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
       <div className="absolute inset-0 z-0">
         <img
-          src="/images/benefit-1.jpg"
+          src="/src/assets/images/hero_banner_1793104493379.jpg"
           alt="HVAC background"
           className="w-full h-full object-cover opacity-20"
+          referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-slate-900/80"></div>
       </div>
@@ -42,17 +43,15 @@ export default function Benefits() {
           <div className="flex items-center gap-2 mb-4">
             <div className="w-12 h-[2px] bg-cyan-400"></div>
             <span className="text-cyan-400 font-bold uppercase tracking-wider text-sm">
-              Why Choose Us
+              Client Advantages
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black mb-6 leading-tight">
-            The Benefits of Choosing{" "}
-            <span className="text-cyan-400">Twintronix</span>
+            The Benefits of Professional{" "}
+            <span className="text-cyan-400">Maintenance</span>
           </h2>
           <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-            We are dedicated to providing the highest quality refrigeration and
-            air conditioning services. Our commitment to excellence ensures that
-            your systems operate at peak efficiency.
+            Protect your investments and optimize your environment. Routine servicing and professional installation from Twintronix ensures maximum efficiency and longevity for all your heating and cooling systems.
           </p>
 
           <div className="grid sm:grid-cols-2 gap-8">
@@ -77,13 +76,17 @@ export default function Benefits() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative"
         >
-          <div className="rounded-xl overflow-hidden shadow-2xl shadow-cyan-500/20 border-4 border-slate-800">
+          <motion.div 
+            animate={{ y: [0, -20, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="rounded-xl overflow-hidden shadow-2xl shadow-cyan-500/20 border-4 border-slate-800"
+          >
             <img
-              src="/images/ac-repair.jpg"
-              alt="Technicians at work"
-              className="w-full h-auto object-cover"
+              src="/images/benefit-1.jpg"
+              alt="Twintronix Benefits"
+              className="w-full h-auto object-cover max-h-[600px]"
             />
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

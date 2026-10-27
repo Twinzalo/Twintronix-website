@@ -48,7 +48,7 @@ export default function Testimonials() {
 
   return (
     <section className="py-24 bg-gray-50 relative overflow-hidden">
-      <div className="max-w-4xl mx-auto px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,65 +68,86 @@ export default function Testimonials() {
           </h2>
         </motion.div>
 
-        <div className="relative">
-          <div className="flex justify-between items-center absolute top-1/2 -translate-y-1/2 w-full z-20 pointer-events-none px-4 md:-mx-12">
-            <button
-              onClick={prevTestimonial}
-              className="pointer-events-auto bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300 -ml-4 md:ml-0"
-            >
-              <ChevronLeft size={24} />
-            </button>
-            <button
-              onClick={nextTestimonial}
-              className="pointer-events-auto bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300 -mr-4 md:mr-0"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Static Image on the Left */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="hidden lg:block relative rounded-2xl overflow-hidden shadow-2xl h-full min-h-[400px]"
+          >
+            <img 
+              src="/src/assets/images/coldroom_storage_1793104493014.jpg" 
+              alt="Twintronix Coldroom installation" 
+              className="absolute inset-0 w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+            {/* Optional gradient on the image */}
+            <div className="absolute inset-0 bg-blue-900/20 mix-blend-overlay"></div>
+          </motion.div>
 
-          <div className="bg-white p-10 md:p-14 rounded-2xl shadow-xl relative border border-gray-100 min-h-[300px] flex items-center justify-center">
-            <div className="text-cyan-100 absolute top-8 left-8 opacity-50">
-              <Quote size={80} className="fill-current" />
+          <div className="relative">
+            <div className="flex justify-between items-center absolute top-1/2 -translate-y-1/2 w-full z-20 pointer-events-none px-4 md:-mx-6">
+              <button
+                onClick={prevTestimonial}
+                className="pointer-events-auto bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300 -ml-4 md:ml-0"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                onClick={nextTestimonial}
+                className="pointer-events-auto bg-white p-3 rounded-full shadow-lg text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300 -mr-4 md:mr-0"
+              >
+                <ChevronRight size={24} />
+              </button>
             </div>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentIndex}
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{ duration: 0.4 }}
-                className="relative z-10 w-full text-center"
-              >
-                <div className="flex justify-center gap-1 mb-6 text-yellow-400">
-                  {[...Array(testimonials[currentIndex].rating)].map(
-                    (_, idx) => (
-                      <Star key={idx} size={20} className="fill-current" />
-                    ),
-                  )}
-                </div>
+            <div className="bg-white p-10 md:p-14 rounded-2xl shadow-xl relative border border-gray-100 min-h-[300px] flex items-center justify-center">
+              <div className="text-cyan-100 absolute top-8 left-8 opacity-50">
+                <Quote size={80} className="fill-current" />
+              </div>
 
-                <p className="text-xl md:text-2xl text-gray-700 italic mb-8 font-medium leading-relaxed">
-                  "{testimonials[currentIndex].text}"
-                </p>
-
-                <div className="flex flex-col items-center gap-3">
-                  <img
-                    src={testimonials[currentIndex].img}
-                    alt={testimonials[currentIndex].name}
-                    className="w-16 h-16 rounded-full object-cover border-4 border-cyan-100"
-                  />
-                  <div>
-                    <h4 className="font-black text-lg text-slate-900">
-                      {testimonials[currentIndex].name}
-                    </h4>
-                    <p className="text-sm text-cyan-600 font-bold">
-                      {testimonials[currentIndex].role}
-                    </p>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentIndex}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative z-10 w-full text-center"
+                >
+                  <div className="flex justify-center gap-1 mb-6 text-yellow-400">
+                    {[...Array(testimonials[currentIndex].rating)].map(
+                      (_, idx) => (
+                        <Star key={idx} size={20} className="fill-current" />
+                      ),
+                    )}
                   </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+
+                  <p className="text-xl md:text-2xl text-gray-700 italic mb-8 font-medium leading-relaxed">
+                    "{testimonials[currentIndex].text}"
+                  </p>
+
+                  <div className="flex flex-col items-center gap-3">
+                    <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-blue-600 to-cyan-400 text-white font-black text-xl flex items-center justify-center border-4 border-cyan-100 shadow-md">
+                      {testimonials[currentIndex].name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </div>
+                    <div>
+                      <h4 className="font-black text-lg text-slate-900">
+                        {testimonials[currentIndex].name}
+                      </h4>
+                      <p className="text-sm text-cyan-600 font-bold">
+                        {testimonials[currentIndex].role}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </div>

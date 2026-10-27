@@ -1,8 +1,41 @@
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
-import { motion } from "motion/react";
-import React from "react";
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import React, { useState } from "react";
 
 export default function Contact() {
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormStatus("submitting");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(
+        "https://formsubmit.co/ajax/45bd8bb11992f582a262bd11c9d8a96c",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+          },
+          body: formData,
+        }
+      );
+
+      if (response.ok) {
+        setFormStatus("success");
+        form.reset();
+        setTimeout(() => setFormStatus("idle"), 5000);
+      } else {
+        setFormStatus("error");
+      }
+    } catch (error) {
+      setFormStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="py-24 bg-gray-50 scroll-mt-20">
       <div className="max-w-7xl mx-auto px-8 relative z-10">
@@ -89,8 +122,32 @@ export default function Contact() {
             </div>
           </div>
 
-          <div className="lg:col-span-3 p-10 md:p-14">
-            <h3 className="text-3xl font-black text-slate-900 mb-6">
+          <div className="lg:col-span-3 p-10 md:p-14 relative">
+            <AnimatePresence>
+              {formStatus === "success" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute top-0 left-0 w-full bg-green-500 text-white px-8 py-4 flex items-center gap-3 font-medium shadow-md z-20"
+                >
+                  <CheckCircle2 size={24} />
+                  Thank you! Your message has been successfully sent. We'll be in touch soon.
+                </motion.div>
+              )}
+              {formStatus === "error" && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="absolute top-0 left-0 w-full bg-red-500 text-white px-8 py-4 flex items-center gap-3 font-medium shadow-md z-20"
+                >
+                  Oops! Something went wrong. Please try submitting again.
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            <h3 className="text-3xl font-black text-slate-900 mb-6 mt-4">
               Send Us A Message
             </h3>
             <p className="text-gray-600 mb-8 font-medium">
@@ -98,11 +155,17 @@ export default function Contact() {
               soon as possible!
             </p>
 
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Honeypot field to prevent spam */}
+              <input type="text" name="_honey" style={{ display: "none" }} />
+              {/* Enable reCAPTCHA explicitly (though FormSubmit handles ajax spam differently) */}
+              <input type="hidden" name="_captcha" value="true" />
+              
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <input
                     type="text"
+                    name="name"
                     placeholder="Your Name *"
                     className="w-full bg-gray-50 border border-gray-200 text-slate-900 placeholder-gray-500 px-5 py-4 rounded-lg outline-none focus:border-blue-600 focus:bg-white transition-all shadow-sm"
                     required
@@ -111,6 +174,7 @@ export default function Contact() {
                 <div>
                   <input
                     type="email"
+                    name="email"
                     placeholder="Email Address *"
                     className="w-full bg-gray-50 border border-gray-200 text-slate-900 placeholder-gray-500 px-5 py-4 rounded-lg outline-none focus:border-blue-600 focus:bg-white transition-all shadow-sm"
                     required
@@ -121,12 +185,14 @@ export default function Contact() {
                 <div>
                   <input
                     type="tel"
+                    name="phone"
                     placeholder="Phone Number"
                     className="w-full bg-gray-50 border border-gray-200 text-slate-900 placeholder-gray-500 px-5 py-4 rounded-lg outline-none focus:border-blue-600 focus:bg-white transition-all shadow-sm"
                   />
                 </div>
                 <div>
                   <select
+                    name="service"
                     defaultValue=""
                     className="w-full bg-gray-50 border border-gray-200 text-slate-900 placeholder-gray-500 px-5 py-4 rounded-lg outline-none focus:border-blue-600 focus:bg-white transition-all shadow-sm appearance-none"
                   >
@@ -150,6 +216,7 @@ export default function Contact() {
               </div>
               <div>
                 <textarea
+                  name="message"
                   rows={4}
                   placeholder="Write Message *"
                   className="w-full bg-gray-50 border border-gray-200 text-slate-900 placeholder-gray-500 px-5 py-4 rounded-lg outline-none focus:border-blue-600 focus:bg-white transition-all shadow-sm resize-none"
@@ -158,9 +225,16 @@ export default function Contact() {
               </div>
               <button
                 type="submit"
-                className="bg-blue-600 text-white font-bold px-8 py-4 rounded-lg hover:bg-slate-900 transition-colors duration-300 flex items-center gap-2 shadow-lg hover:shadow-blue-600/20"
+                disabled={formStatus === "submitting"}
+                className="bg-blue-600 text-white font-bold px-8 py-4 rounded-lg hover:bg-slate-900 transition-colors duration-300 flex items-center gap-2 shadow-lg hover:shadow-blue-600/20 disabled:opacity-75 disabled:cursor-wait"
               >
-                Send Message <Send size={20} />
+                {formStatus === "submitting" ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    Send Message <Send size={20} />
+                  </>
+                )}
               </button>
             </form>
           </div>

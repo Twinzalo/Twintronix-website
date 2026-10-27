@@ -18,19 +18,16 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-8 grid md:grid-cols-2 lg:grid-cols-4 gap-12 pb-16">
         {/* Brand */}
         <div>
-          <div className="flex items-center gap-2 mb-6 group cursor-default">
-            <div className="bg-blue-600 text-white p-2 rounded-lg group-hover:bg-cyan-500 transition-colors duration-300">
-              <Snowflake size={32} />
+          <Link to="/" className="flex items-center gap-2 mb-6 group w-fit">
+            <div className="bg-white p-3 md:p-4 rounded-2xl shadow-sm transition-transform duration-300 group-hover:scale-105">
+              <img 
+                src="/logo.svg" 
+                alt="Twintronix Refrigeration" 
+                className="w-56 sm:w-64 md:w-[280px] h-auto object-contain"
+                referrerPolicy="no-referrer"
+              />
             </div>
-            <div>
-              <h1 className="text-2xl font-black text-white leading-none tracking-tight">
-                TWINTRONIX
-              </h1>
-              <p className="text-[10px] text-cyan-400 font-bold uppercase tracking-widest mt-1">
-                Refrigeration
-              </p>
-            </div>
-          </div>
+          </Link>
           <p className="text-gray-400 leading-relaxed mb-6 font-medium">
             Specializing in Freezer Rooms, Coldrooms, Repairs & Maintenance to
             all Refrigeration and Air Conditioning systems.

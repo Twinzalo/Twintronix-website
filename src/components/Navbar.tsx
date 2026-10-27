@@ -82,114 +82,79 @@ export default function Navbar() {
       </div>
 
       {/* Main Nav */}
-      <div className="h-[90px]">
+      <div className="h-[90px] absolute w-full top-[36px] lg:top-[40px] z-[100]">
         {" "}
-        {/* Spacer to prevent layout shift when nav becomes fixed */}
+        {/* Spacer removed, Nav is absolute */}
         <nav
-          className={`bg-white px-8 py-4 shadow-md w-full transition-all duration-300 z-[100] ${isScrolled ? "fixed top-0 left-0 animate-in slide-in-from-top-10" : "fixed top-auto"}`}
+          className={`px-8 py-4 w-full transition-all duration-300 z-[100] ${isScrolled ? "fixed top-0 left-0 bg-white shadow-md animate-in slide-in-from-top-10" : "absolute top-0 left-0 bg-transparent"}`}
         >
           <div className="max-w-7xl mx-auto flex justify-between items-center">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3">
-              <div className="bg-blue-600 text-white p-2.5 rounded-lg">
-                <Snowflake size={32} />
-              </div>
-              <div>
-                <h1 className="text-2xl font-black text-slate-900 leading-none tracking-tight">
-                  TWINTRONIX
-                </h1>
-                <p className="text-[10px] text-blue-600 font-bold uppercase tracking-wide leading-tight max-w-[200px] mt-1">
-                  Refrigeration / Air Conditioning Electrical Contractors
-                </p>
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="bg-white p-3 md:p-4 rounded-2xl shadow-sm transition-transform duration-300 group-hover:scale-105">
+                <img 
+                  src="/logo.svg" 
+                  alt="Twintronix Refrigeration" 
+                  className="w-48 sm:w-56 md:w-64 h-auto object-contain"
+                  referrerPolicy="no-referrer"
+                />
               </div>
             </Link>
 
             {/* Desktop Menu */}
-            <div className="hidden lg:flex items-center space-x-8 font-semibold text-slate-700">
+            <div className={`hidden lg:flex items-center space-x-8 font-semibold ${isScrolled ? "text-slate-700" : "text-white"}`}>
               <Link
                 to="/"
-                className={`transition-colors duration-300 ${isActive("/") ? "text-blue-600" : "hover:text-cyan-500"}`}
+                className={`transition-colors duration-300 ${isActive("/") ? "text-blue-500" : "hover:text-cyan-400"}`}
               >
                 Home
               </Link>
               <Link
                 to="/about"
-                className={`transition-colors duration-300 ${isActive("/about") ? "text-blue-600" : "hover:text-cyan-500"}`}
+                className={`transition-colors duration-300 ${isActive("/about") ? "text-blue-500" : "hover:text-cyan-400"}`}
               >
                 About Us
               </Link>
 
-              <div
-                className="relative group py-4"
-                onMouseEnter={() => setShowServicesDropdown(true)}
-                onMouseLeave={() => setShowServicesDropdown(false)}
+              <Link
+                to="/services"
+                className={`transition-colors duration-300 ${isActive("/services") ? "text-blue-500" : "hover:text-cyan-400"}`}
               >
-                <Link
-                  to="/services"
-                  className={`flex items-center transition-colors duration-300 ${isActive("/services") ? "text-blue-600" : "hover:text-cyan-500"}`}
-                >
-                  Services{" "}
-                  <ChevronDown
-                    size={16}
-                    className={`ml-1 transition-transform duration-300 ${showServicesDropdown ? "rotate-180" : ""}`}
-                  />
-                </Link>
-
-                <AnimatePresence>
-                  {showServicesDropdown && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 10 }}
-                      transition={{ duration: 0.2 }}
-                      className="absolute top-[100%] left-0 w-56 bg-white shadow-xl rounded-xl border border-gray-100 overflow-hidden"
-                    >
-                      <Link
-                        to="/services?view=grid"
-                        className="block px-4 py-3 hover:bg-gray-50 text-slate-700 hover:text-blue-600 transition-colors border-b border-gray-50"
-                      >
-                        Service Grid
-                      </Link>
-                      <Link
-                        to="/services?view=details"
-                        className="block px-4 py-3 hover:bg-gray-50 text-slate-700 hover:text-blue-600 transition-colors"
-                      >
-                        Service Details
-                      </Link>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                Services
+              </Link>
 
               <Link
                 to="/faq"
-                className={`transition-colors duration-300 ${isActive("/faq") ? "text-blue-600" : "hover:text-cyan-500"}`}
+                className={`transition-colors duration-300 ${isActive("/faq") ? "text-blue-500" : "hover:text-cyan-400"}`}
               >
                 FAQ
               </Link>
               <Link
                 to="/contact"
-                className={`transition-colors duration-300 ${isActive("/contact") ? "text-blue-600" : "hover:text-cyan-500"}`}
+                className={`transition-colors duration-300 ${isActive("/contact") ? "text-blue-500" : "hover:text-cyan-400"}`}
               >
                 Contact
               </Link>
             </div>
 
             {/* CTA & Mobile Toggle */}
-            <div className="flex items-center gap-6">
-              <div className="hidden md:flex items-center gap-4 border-l pl-6 group">
-                <div className="bg-cyan-100 p-3 rounded-full text-cyan-600 transition-transform duration-500 group-hover:[transform:rotateY(180deg)]">
+            <div className="flex items-center gap-4 md:gap-6">
+              <a 
+                href="tel:+27645395831" 
+                className="hidden md:flex items-center gap-4 border-l border-white/20 pl-6 group"
+              >
+                <div className="bg-cyan-500/20 p-3 rounded-full text-cyan-400 transition-transform duration-500 group-hover:[transform:rotateY(180deg)]">
                   <Phone size={24} />
                 </div>
                 <div>
-                  <p className="text-sm text-gray-500 font-medium">
+                  <p className={`text-sm font-medium ${isScrolled ? "text-gray-500" : "text-gray-300"}`}>
                     Have any questions?
                   </p>
-                  <p className="text-lg font-black text-slate-900">
+                  <p className={`text-lg font-black ${isScrolled ? "text-slate-900" : "text-white"}`}>
                     +27 64 539 5831
                   </p>
                 </div>
-              </div>
+              </a>
 
               <Link
                 to="/contact"
@@ -198,9 +163,19 @@ export default function Navbar() {
                 Get A Quote
               </Link>
 
+              {/* Mobile Click-to-Call Icon */}
+              <a 
+                href="tel:+27645395831" 
+                className={`flex md:hidden items-center justify-center p-2.5 rounded-full ${isScrolled ? "bg-blue-100/50 text-blue-600" : "bg-white/10 text-cyan-400"}`}
+                aria-label="Call us"
+              >
+                <Phone size={22} />
+              </a>
+
               <button
-                className="lg:hidden text-slate-900"
+                className={`lg:hidden ${isScrolled ? "text-slate-900" : "text-white"}`}
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle menu"
               >
                 {isOpen ? <X size={28} /> : <Menu size={28} />}
               </button>

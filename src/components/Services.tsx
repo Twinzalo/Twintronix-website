@@ -2,6 +2,12 @@
 import {
   ArrowRight,
   CheckCircle2,
+  Wind,
+  Wrench,
+  Snowflake,
+  Refrigerator,
+  Zap,
+  Fan,
 } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -10,9 +16,8 @@ import { motion, AnimatePresence } from "motion/react";
 
 const servicesList = [
   {
-    icon: "/images/icon-ac-install.png",
-    image:
-      "/images/ac-install.jpg",
+    icon: Wind,
+    image: "/src/assets/images/ac_installation_1793104493756.jpg",
     title: "AC Installation",
     desc: "Professional installation of modern, energy-efficient air conditioning systems tailored for your space.",
     fullDesc:
@@ -25,9 +30,8 @@ const servicesList = [
     ],
   },
   {
-    icon: "/images/icon-ac-repair.png",
-    image:
-      "/images/ac-repair.jpg",
+    icon: Wrench,
+    image: "/src/assets/images/ac_repair_1793104493945.jpg",
     title: "AC Repairs & Maintenance",
     desc: "Rapid diagnostics and thorough repair to get your cooling systems running perfectly again.",
     fullDesc:
@@ -40,9 +44,8 @@ const servicesList = [
     ],
   },
   {
-    icon: "/images/icon-coldroom.png",
-    image:
-      "/images/temperature.jpg",
+    icon: Snowflake,
+    image: "/src/assets/images/coldroom_storage_1793104493014.jpg",
     title: "Freezer Rooms & Coldrooms",
     desc: "Commercial refrigeration setups, maintenance, and emergency fixes for cold storage.",
     fullDesc:
@@ -55,9 +58,8 @@ const servicesList = [
     ],
   },
   {
-    icon: "/images/icon-fridge.png",
-    image:
-      "/images/commercial-fridge.jpg",
+    icon: Refrigerator,
+    image: "/src/assets/images/commercial_fridge_1793104494657.jpg",
     title: "Commercial Refrigeration",
     desc: "Ice Machines, Under Bars, Bottle Coolers, Island Freezers & Upright Cabinets.",
     fullDesc:
@@ -70,9 +72,8 @@ const servicesList = [
     ],
   },
   {
-    icon: "/images/icon-electrical.png",
-    image:
-      "/images/electrical-works.jpg",
+    icon: Zap,
+    image: "/src/assets/images/hero_banner_1793104493379.jpg",
     title: "Electrical Works",
     desc: "Integrated electrical solutions for HVAC systems to ensure safe and continuous operation.",
     fullDesc:
@@ -85,9 +86,8 @@ const servicesList = [
     ],
   },
   {
-    icon: "/images/icon-ventilation.png",
-    image:
-      "/images/ventilation.jpg",
+    icon: Fan,
+    image: "/src/assets/images/ac_installation_1793104493756.jpg",
     title: "Ventilation Solutions",
     desc: "Expert ventilation solutions to improve indoor air quality and maintain consistent airflow.",
     fullDesc:
@@ -141,10 +141,11 @@ export default function Services() {
       {/* Decorative background image behind "Our Services" heading */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-10">
         <img
-          src="/images/services-bg.jpg"
+          src="/src/assets/images/coldroom_storage_1793104493014.jpg"
           alt=""
           className="w-full h-full object-cover"
           aria-hidden="true"
+          referrerPolicy="no-referrer"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-transparent to-gray-50" />
       </div>
@@ -189,59 +190,40 @@ export default function Services() {
               {servicesList.map((srv, i) => (
                 <div
                   key={i}
-                  className="bg-white rounded-t-2xl shadow-lg border border-gray-100 overflow-hidden text-left hover:shadow-2xl hover:border-blue-100 hover:-translate-y-2 transition-all duration-300 group flex flex-col"
+                  className="bg-white rounded-[40px] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 hover:shadow-[0_8px_40px_rgb(59,130,246,0.12)] transition-all duration-300 group flex flex-col relative"
                 >
-                  <div className="relative h-64 shrink-0 overflow-hidden">
-                    <div
-                      className="absolute inset-0 overflow-hidden bg-white"
-                      style={{
-                        clipPath: "polygon(0 0, 100% 0, 100% 85%, 0% 100%)",
-                      }}
-                    >
-                      <img
-                        src={srv.image}
-                        alt={srv.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-blue-900/10 group-hover:bg-transparent transition-colors duration-300"></div>
-                    </div>
-                    {/* The overlapping floating icon */}
-                    <div className="absolute bottom-4 right-8 w-16 h-16 bg-blue-600 text-white rounded-xl shadow-xl flex items-center justify-center -rotate-12 group-hover:rotate-0 group-hover:bg-cyan-500 transition-all duration-300 z-10">
-                      <img
-                        src={srv.icon}
-                        alt={`${srv.title} icon`}
-                        className="w-7 h-7 object-contain rotate-12 group-hover:rotate-0 transition-all duration-300"
-                      />
-                    </div>
+                  <div className="relative mb-14">
+                    {/* Image Container with matching specific rounded borders */}
+                     <div className="h-64 w-full rounded-tl-[40px] rounded-tr-[40px] rounded-br-[60px] rounded-bl-[60px] overflow-hidden relative">
+                        <img
+                          src={srv.image}
+                          alt={srv.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          loading="lazy"
+                          referrerPolicy="no-referrer"
+                        />
+                        <div className="absolute inset-0 bg-blue-900/5 group-hover:bg-transparent transition-colors duration-300"></div>
+                     </div>
+                     
+                     {/* Circle icon with white border */}
+                     <div className="absolute -bottom-8 left-8 z-20">
+                       <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center border-[6px] border-white shadow-md transition-transform duration-300 group-hover:scale-105 group-hover:bg-cyan-500 text-white">
+                         <srv.icon size={36} className="text-white" />
+                       </div>
+                     </div>
                   </div>
 
-                  <div className="p-8 flex-1 flex flex-col pt-0">
-                    <h3 className="text-xl font-black text-slate-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">
+                  <div className="px-8 pb-10 flex-1 flex flex-col">
+                    <h3 className="text-2xl font-bold text-[#0a1128] mb-4 group-hover:text-blue-600 transition-colors duration-300">
                       {srv.title}
                     </h3>
-                    <p className="text-gray-600 mb-6 leading-relaxed flex-1 font-medium">
+                    <p className="text-slate-500 mb-8 leading-relaxed flex-1 font-medium">
                       {srv.desc}
                     </p>
 
-                    <div className="space-y-2 mb-8">
-                      {srv.benefits.slice(0, 2).map((benefit, idx) => (
-                        <div
-                          key={idx}
-                          className="flex items-center gap-2 text-sm font-medium text-slate-700"
-                        >
-                          <CheckCircle2
-                            size={16}
-                            className="text-cyan-500 shrink-0"
-                          />
-                          <span>{benefit}</span>
-                        </div>
-                      ))}
-                    </div>
-
                     <button
                       onClick={() => handleReadMore(i)}
-                      className="text-blue-600 font-bold hover:text-cyan-600 transition-colors inline-flex items-center gap-2 mt-auto self-start group/btn"
+                      className="text-blue-600 font-bold hover:text-blue-800 transition-colors inline-flex items-center gap-2 self-start group/btn"
                     >
                       Read More{" "}
                       <ArrowRight
@@ -278,16 +260,15 @@ export default function Services() {
                     <button
                       key={i}
                       onClick={() => setSelectedServiceIdx(i)}
-                      className={`w-full flex items-center justify-between p-4 rounded-xl font-bold transition-all duration-300 ${selectedServiceIdx === i ? "bg-blue-600 text-white shadow-md" : "bg-gray-50 text-slate-700 hover:bg-gray-100"}`}
+                      className={`w-full flex items-center justify-between p-4 rounded-2xl font-bold transition-all duration-300 ${selectedServiceIdx === i ? "bg-blue-600 text-white shadow-md" : "bg-[#f8faff] text-slate-700 hover:bg-blue-50"}`}
                     >
                       <span className="flex items-center gap-3">
-                        <img
-                          src={srv.icon}
-                          alt=""
-                          className={`w-6 h-6 object-contain transition-opacity duration-300 ${
+                        <srv.icon
+                          size={20}
+                          className={`transition-all duration-300 ${
                             selectedServiceIdx === i
-                              ? "opacity-100"
-                              : "opacity-70 group-hover:opacity-100"
+                              ? "text-white"
+                              : "text-blue-600"
                           }`}
                         />
                         {srv.title}
@@ -321,15 +302,15 @@ export default function Services() {
                     src={selectedService.image}
                     alt={selectedService.title}
                     className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
-                    <div className="flex items-center gap-4 text-white">
-                      <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                        <img
-                          src={selectedService.icon}
-                          alt=""
-                          className="w-8 h-8 object-contain"
-                        />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a1128]/80 to-transparent flex items-end p-8">
+                    <div className="flex items-center gap-6 text-white">
+                      <div className="relative flex items-center justify-center">
+                         <div className="absolute w-[88px] h-[88px] bg-white/20 rounded-full"></div>
+                         <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center shadow-lg relative z-10 text-white">
+                           <selectedService.icon size={32} className="text-white" />
+                         </div>
                       </div>
                       <h2 className="text-3xl md:text-4xl font-black">
                         {selectedService.title}
@@ -339,10 +320,10 @@ export default function Services() {
                 </div>
 
                 <div className="p-8 md:p-12">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">
+                  <h3 className="text-2xl font-bold text-[#0a1128] mb-4">
                     Service Overview
                   </h3>
-                  <p className="text-gray-600 text-lg leading-relaxed mb-8 font-medium">
+                  <p className="text-slate-600 text-lg leading-relaxed mb-8 font-medium">
                     {selectedService.fullDesc}
                   </p>
 
