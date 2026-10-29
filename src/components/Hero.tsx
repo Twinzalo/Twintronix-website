@@ -12,7 +12,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 flex justify-end">
         <div className="w-full lg:w-[65%] h-full relative">
           <img
-            src="/src/assets/images/hero_banner_1793104493379.jpg"
+            src="/images/hero-bg.jpg"
             alt="Twintronix cooling technicians"
             className="w-full h-full object-cover object-[75%_15%]"
             referrerPolicy="no-referrer"
