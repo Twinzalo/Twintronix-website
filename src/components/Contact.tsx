@@ -1,4 +1,4 @@
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react";
+import { MapPin, Phone, Mail, Send, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import React, { useState } from "react";
 
@@ -13,16 +13,14 @@ export default function Contact() {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch(
-        "https://formsubmit.co/ajax/45bd8bb11992f582a262bd11c9d8a96c",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-          },
-          body: formData,
-        }
-      );
+      // Your specific Formspree endpoint
+      const response = await fetch("https://formspree.io/f/xzeeavee", {
+        method: "POST",
+        body: formData,
+        headers: {
+          Accept: "application/json",
+        },
+      });
 
       if (response.ok) {
         setFormStatus("success");
@@ -30,9 +28,11 @@ export default function Contact() {
         setTimeout(() => setFormStatus("idle"), 5000);
       } else {
         setFormStatus("error");
+        setTimeout(() => setFormStatus("idle"), 5000);
       }
     } catch (error) {
       setFormStatus("error");
+      setTimeout(() => setFormStatus("idle"), 5000);
     }
   };
 
@@ -65,8 +65,8 @@ export default function Contact() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid lg:grid-cols-5 gap-12 bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100"
         >
+          {/* Left Side - Contact Info */}
           <div className="lg:col-span-2 bg-slate-900 text-white p-10 md:p-14 relative overflow-hidden">
-            {/* Decorative Background Elements */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 rounded-full blur-3xl"></div>
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl"></div>
 
@@ -122,6 +122,7 @@ export default function Contact() {
             </div>
           </div>
 
+          {/* Right Side - Form */}
           <div className="lg:col-span-3 p-10 md:p-14 relative">
             <AnimatePresence>
               {formStatus === "success" && (
@@ -156,10 +157,8 @@ export default function Contact() {
             </p>
 
             <form className="space-y-6" onSubmit={handleSubmit}>
-              {/* Honeypot field to prevent spam */}
-              <input type="text" name="_honey" style={{ display: "none" }} />
-              {/* Enable reCAPTCHA explicitly (though FormSubmit handles ajax spam differently) */}
-              <input type="hidden" name="_captcha" value="true" />
+              {/* Formspree Hidden Fields */}
+              <input type="hidden" name="_replyto" value="email" />
               
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -181,6 +180,7 @@ export default function Contact() {
                   />
                 </div>
               </div>
+              
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <input
@@ -214,6 +214,7 @@ export default function Contact() {
                   </select>
                 </div>
               </div>
+              
               <div>
                 <textarea
                   name="message"
@@ -223,6 +224,7 @@ export default function Contact() {
                   required
                 ></textarea>
               </div>
+              
               <button
                 type="submit"
                 disabled={formStatus === "submitting"}

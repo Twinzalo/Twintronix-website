@@ -8,7 +8,7 @@ interface PageBannerProps {
   image?: string;
 }
 
-export default function PageBanner({ title, breadcrumbs, image = "/src/assets/images/coldroom_storage_1793104493014.jpg" }: PageBannerProps) {
+export default function PageBanner({ title, breadcrumbs, image = "/src/assets/images/coldroom_storage.jpg" }: PageBannerProps) {
   return (
     <div className="bg-slate-900 text-white min-h-[400px] flex items-center pt-32 pb-20 relative overflow-hidden z-0">
       {/* Background Image Container */}

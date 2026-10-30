@@ -16,7 +16,7 @@ export default function About() {
         >
           <div className="relative rounded-lg overflow-hidden border-8 border-white shadow-xl z-10">
             <img
-              src="/src/assets/images/ac_repair_1793104493945.jpg"
+              src="/src/assets/images/ac_repair.jpg"
               alt="Technician working on AC"
               className="w-full object-cover h-[500px]"
               referrerPolicy="no-referrer"
@@ -24,7 +24,7 @@ export default function About() {
           </div>
           <div className="absolute -bottom-10 -right-10 w-2/3 border-8 border-white rounded-lg overflow-hidden shadow-xl z-20 hidden md:block">
             <img
-              src="/src/assets/images/coldroom_storage_1793104493014.jpg"
+              src="/src/assets/images/coldroom_storage.jpg"
               alt="Refrigeration details"
               className="w-full object-cover h-[300px]"
               referrerPolicy="no-referrer"
@@ -33,7 +33,7 @@ export default function About() {
           {/* Experience Badge */}
           <div className="absolute top-10 -left-10 bg-blue-600 text-white p-6 rounded-lg shadow-lg z-20 hidden md:block group cursor-default">
             <div className="text-5xl font-black mb-1 group-hover:scale-110 transition-transform duration-300">
-              25<span className="text-2xl text-cyan-400">+</span>
+              09<span className="text-2xl text-cyan-400">+</span>
             </div>
             <div className="text-sm font-semibold uppercase tracking-wider">
               Years of

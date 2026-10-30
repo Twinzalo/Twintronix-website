@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 const servicesList = [
   {
     icon: "/images/icons/icon-ac-install.png",
-    image: "/src/assets/images/ac_installation_1793104493756.jpg",
+    image: "/src/assets/images/ac_installation.jpg",
     title: "AC Installation",
     desc: "Professional installation of modern, energy-efficient air conditioning systems tailored for your space.",
     fullDesc:
@@ -35,7 +35,7 @@ const servicesList = [
   },
   {
     icon: "/images/icons/icon-coldroom.png",
-    image: "/src/assets/images/coldroom_storage_1793104493014.jpg",
+    image: "/src/assets/images/coldroom_storage.jpg",
     title: "Freezer Rooms & Coldrooms",
     desc: "Commercial refrigeration setups, maintenance, and emergency fixes for cold storage.",
     fullDesc:
@@ -49,7 +49,7 @@ const servicesList = [
   },
   {
     icon: "/images/icons/icon-fridge.png",
-    image: "/src/assets/images/commercial_fridge_1793104494657.jpg",
+    image: "/src/assets/images/commercial_fridge.jpg",
     title: "Commercial Refrigeration",
     desc: "Ice Machines, Under Bars, Bottle Coolers, Island Freezers & Upright Cabinets.",
     fullDesc:
@@ -77,7 +77,7 @@ const servicesList = [
   },
   {
     icon: "/images/icons/icon-ventilation.png",
-    image: "/src/assets/images/ac_installation_1793104493756.jpg",
+    image: "/src/assets/images/HH_ventilation.jpg",
     title: "Ventilation Solutions",
     desc: "Expert ventilation solutions to improve indoor air quality and maintain consistent airflow.",
     fullDesc:
